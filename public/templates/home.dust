@@ -1,0 +1,230 @@
+{>"layouts/master" showNavigationBar="false"/}
+
+{<title}{@pre type="content" key="home.mlp.title"/}{/title}
+{<headingImg}{@pre type="content" key="home.mlp.headingImg"/}{/headingImg}
+{<heading}{@pre type="content" key="home.mlp.heading"/}{/heading}
+
+{<body}
+
+    <div class="row padded-row" data-equalizer>
+        <div class="small-12 medium-8 columns"  data-equalizer-watch>
+            <!-- Grid Example -->
+            <div class="homeimage">
+                <h3>{@pre type="content" key="home.msg.getRewarded"/}<br/>
+                    {@pre type="content" key="home.msg.everyTxn" /}
+                </h3>
+                <div class="button-1-right"><a href="#" >{@pre type="content" key="home.msg.findOutMore" /}</a></div>
+            </div>
+            <div class="medium-12 columns">
+                <div class="popular-rewards">
+                    {@pre type="content" key="home.msg.popularRewards"/}
+                </div>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <div class="panel promo-panel" data-equalizer-watch>
+                    <div class="category-title">{@pre type="content" key="home.msg.electronics"/}</div>
+                    <div id="cat1Link" class="category-img1" >&nbsp;</div>
+                </div>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <div class="panel promo-panel" style="border-right:1px solid #ffffff;" data-equalizer-watch>
+                    <div class="category-title">{@pre type="content" key="home.msg.beauty"/}</div>
+                    <div id="cat2Link" class="category-img2" >&nbsp;</div>
+                </div>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <div class="panel promo-panel" data-equalizer-watch>
+                    <div class="category-title">{@pre type="content" key="home.msg.leisure"/}</div>
+                    <div id="cat3Link" class="category-img3" >&nbsp;</div>
+                </div>
+            </div>
+            <!-- END First Line -->
+            <!-- START Second Line -->
+            <div class="small-12 medium-4 columns">
+                <div class="panel promo-panel" data-equalizer-watch>
+                    <div class="category-title">{@pre type="content" key="home.msg.travel.luggage"/}</div>
+                    <div id="cat4Link" class="category-img4" >&nbsp;</div>
+                </div>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <div class="panel promo-panel" data-equalizer-watch>
+                    <div class="category-title">{@pre type="content" key="home.msg.flights.holidays"/}</div>
+                    <div id="cat5Link" class="category-img5" >&nbsp;</div>
+                </div>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <div class="panel promo-panel" data-equalizer-watch>
+                    <div class="category-title">{@pre type="content" key="home.msg.apparel"/}</div>
+                    <div id="cat6Link" class="category-img6" >&nbsp;</div>
+                </div>
+            </div>
+            <!-- END Second Line-->
+        </div>
+        <!-- Client Account Data -->
+        <div class="small-12 medium-4 columns" data-equalizer-watch>
+            <div class="panel">
+                <div class="user-detail">
+                    <h3>{user.firstName} {user.lastName}</h3>
+                    {@pre type="content" key="home.label.memberId"/}
+                    <div class="user-detail-var">{user.loyaltyId}</div>
+                    <br>
+                    {@pre type="content" key="home.label.programName"/}
+                    <div class="user-detail-var">{user.headerData.programName}</div>
+                    <br>
+                    {@pre type="content" key="home.label.redeemablePoints"/}
+                    <div class="user-detail-var">{user.headerData.redeemablePoints}</div>
+                    <br>
+                    {@pre type="content" key="home.label.nextPtsExpDate"/}: <span class="user-detail-var">{user.headerData.firstExpirePts} </span>
+                    {@pre type="content" key="home.label.points"/}
+                    <div class="user-detail-var">
+                        {@eq key=user.headerData.nextPtsExpDate value="Never Expire"}
+                            {@pre type="content" key="home.label.never"/}
+                        {:else}
+                            {user.headerData.nextPtsExpDate}
+                        {/eq}
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <a href='/profile' class="user-detail">{@pre type="content" key="home.menu.profile"/}</a><br>
+                    <br>
+                    <hr>
+                    <br>
+                    <a href='/transactions' class="user-detail">{@pre type="content" key="home.menu.transactions"/}</a><br>
+                    <br>
+                    <hr>
+                    <br>
+                    <a href='/rewards' class="user-detail">{@pre type="content" key="home.menu.points"/}</a>
+                </div>
+            </div>
+            <div class="panel login-panel">
+                <h3>{@pre type="content" key="home.label.rewardYourself"/}</h3>
+                <div class="button-1" >
+                    <button id="homeRdmPortalBtn" class="button">
+                        {@pre type="content" key="home.label.browseStore"/}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- END Client acccount data -->
+    </div>
+    <div class="row">
+        <div class="medium-12 columns"> </div>
+    </div>
+    <div class="row">
+        <div class="medium-12 columns"> </div>
+    </div>
+
+{/body}
+
+{<body-scripts}
+   <script>
+     $(document).foundation();
+
+     $("#homeRdmPortalBtn").on("click", function() {
+        location.reload(true);
+        $.ajax({
+           type: "GET",
+           url: "/ajax/openRedeemWindow",
+           dataType: "json",
+		   async:    false,
+           data: {isRedeemLink: "true", category : ""}
+        }).done(function( value ) {
+           if (value.flag=="success") {
+               window.open(value.iRedeemURL, '_newtab');
+           }
+        });
+     });
+
+     $("#cat1Link").on("click", function() {
+        location.reload(true);
+        $.ajax({
+           type: "GET",
+           url: "/ajax/openRedeemWindow",
+           dataType: "json",
+		   async:    false,
+           data: {isRedeemLink: false, category : "rdmPortalCat1"}
+        }).done(function( value ) {
+           if (value.flag=="success") {
+              window.open(value.iRedeemURL, '_newtab');
+           }
+        });
+     });
+
+     $("#cat2Link").on("click", function() {
+        location.reload(true);
+        $.ajax({
+           type: "GET",
+           url: "/ajax/openRedeemWindow",
+           dataType: "json",
+		   async:    false,
+           data: {isRedeemLink: false, category : "rdmPortalCat2"}
+        }).done(function( value ) {
+           if (value.flag=="success") {
+              window.open(value.iRedeemURL, '_newtab');
+           }
+        });
+     });
+
+     $("#cat3Link").on("click", function() {
+        location.reload(true);
+        $.ajax({
+           type: "GET",
+           url: "/ajax/openRedeemWindow",
+           dataType: "json",
+		   async:    false,
+           data: {isRedeemLink: false, category : "rdmPortalCat3"}
+        }).done(function( value ) {
+           if (value.flag=="success") {
+              window.open(value.iRedeemURL, '_newtab');
+           }
+        });
+     });
+
+     $("#cat4Link").on("click", function() {
+        location.reload(true);
+        $.ajax({
+           type: "GET",
+           url: "/ajax/openRedeemWindow",
+           dataType: "json",
+		   async:    false,
+           data: {isRedeemLink: false, category : "rdmPortalCat4"}
+        }).done(function( value ) {
+           if (value.flag=="success") {
+              window.open(value.iRedeemURL, '_newtab');
+           }
+        });
+     });
+
+     $("#cat5Link").on("click", function() {
+        location.reload(true);
+        $.ajax({
+           type: "GET",
+           url: "/ajax/openRedeemWindow",
+           dataType: "json",
+		   async:    false,
+           data: {isRedeemLink: false, category : "rdmPortalCat5"}
+        }).done(function( value ) {
+           if (value.flag=="success") {
+              window.open(value.iRedeemURL, '_newtab');
+           }
+        });
+     });
+
+     $("#cat6Link").on("click", function() {
+        location.reload(true);
+        $.ajax({
+           type: "GET",
+           url: "/ajax/openRedeemWindow",
+           dataType: "json",
+		   async:    false,
+           data: {isRedeemLink: false, category : "rdmPortalCat6"}
+        }).done(function( value ) {
+           if (value.flag=="success") {
+              window.open(value.iRedeemURL, '_newtab');
+           }
+        });
+     });
+
+   </script>
+{/body-scripts}

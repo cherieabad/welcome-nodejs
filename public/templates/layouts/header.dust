@@ -1,0 +1,46 @@
+<div class="fixed"> 
+   <div class="language-bar">
+      <span class="left">
+         <ul>
+            <li>
+               <a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">
+				<span class="topbar-styles">{@pre type="content" key="layout.header.language"/}</span> 
+				<img src="img/arrow-down2.png" border="0" style="margin-left: 5px;">
+			   </a>
+               <ul id="drop1" class="f-dropdown tiny" data-dropdown-content aria-hidden="true" tabindex="-1">
+                  <div class="language-list">
+                     <li class="has-dropdown not-click"  id="langDrpDwn">
+                        <ul class="dropdown" id="listDrpDwn"></ul>
+                      </li>
+                   </div>
+                </ul>
+             </li>
+          </ul>
+       </span>
+	   {@if cond="'{showSigninRegister}'!=='false'"}
+       <span class="right">
+		   <div class="links-top-bar">
+			   <a style="color:#FFF; font-size: 12px; font-weight:normal;" id="signinLink">{@pre type="content" key="layout.header.signin"/}
+			   </a> | <a style="color:#FFF; font-size: 12px; font-weight:normal;" id="registerLink">{@pre type="content" key="layout.header.register"/}
+			   </a>
+		   </div>
+	   </span>
+	   {/if}
+   </div>    
+   <nav class="tab-bar">
+      <section class="right tab-bar-section"> <h1 class="title text-right"><img src="img/lgo-host.png" alt="iRewardSpend" /></h1></section>
+   </nav>
+</div>
+
+<section class="main-section cobrand">
+   <div id="bgcolor-cobrand">
+      <div class="row">
+         <div class="large-12 columns">
+            <p class="coBrandLogo"><img src="img/host.png" alt="Barclays"/></p>     
+         </div>
+      </div>
+   </div>  
+   <hr class="cobrand" />    
+</section>
+
+   

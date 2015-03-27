@@ -1,0 +1,16 @@
+{
+    "styleConfig": {
+        "TENANT_LOGO_FILENAME": "/img/tenant2.png",
+        "TENANT_CSS_FILENAME": "css/themeTenant2.css"
+    },
+    "tenantConfig": {
+        "TENANT_CODE": "2",
+        "TENANT_INT_ID": "2",
+        "SUPPORTED_LANGUAGE_LIST": "en-GB,fr-FR",
+        "DEF_LANG": "fr-FR",
+        "CURRENCY": "EUR",
+        "RESIDENCE_COUNTRY_DEFAULT": "FR",
+        "COUNTRY_LIST": "SA,AU,AE,ES,FR,LB,PH,GB,SG,VN"
+    }
+}
+ 

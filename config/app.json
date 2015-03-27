@@ -1,0 +1,28 @@
+{
+    "port": 8822,
+    "loggerConfig": {
+        "appenders": [
+            {"type": "console"},
+            {
+                "type": "dateFile",
+                "filename": "logs/mlp_common.log",
+                "levels": "TRACE",
+                "category": "MLP",
+                "pattern": "-yyyy-MM-dd",
+                "alwaysIncludePattern": false
+            }
+        ],
+        "replaceConsole": "true"
+    },
+    "i18n": {
+        "fallback": "en-US",
+        "contentPath": "path:./locales"
+    },
+    "languageMapping": {
+        "LANGUAGEMAP": [
+            {"langCode": "en", "langName": "english"},
+            {"langCode": "fr", "langName": "french"},
+            {"langCode": "es", "langName": "spanish"}
+        ]
+    }
+}

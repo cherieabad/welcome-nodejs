@@ -1,0 +1,33 @@
+{
+    "middleware": {
+        "errorPages": {
+            "404": "errors/404",
+            "500": "errors/500",
+            "503": "errors/503"
+        },
+        "locale": {
+            "priority": 95,
+            "enabled": true,
+            "module": {
+                "name": "path:./lib/locale"
+            }
+        },
+        "session": {
+            "module": true,
+            "key": "connect.sid",
+            "secret": "04b32f3e139d249f97c768d94a1e755bc9e8cd26",
+            "cookie": {
+                "path": "/",
+                "httpOnly": true,
+                "maxAge": 7.2e+6
+            },
+            "proxy": null
+        },
+        "appsec": {
+            "csrf": false,
+            "csp": false,
+            "p3p": false,
+            "xframe": "SAMEORIGIN"
+        }
+    }
+}

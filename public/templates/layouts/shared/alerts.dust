@@ -1,0 +1,31 @@
+{#alerts}
+
+{@eq key=type value="info"}
+	<div data-alert class="alert-box info round">
+		<a href="#" class="close">&times;</a>
+		{@getMessage key="{msg}" locale="{locale}" bundle="alert"/}
+	</div>
+{/eq}
+
+{@eq key=type value="success"}
+	<div data-alert class="alert-box success round">
+	    <a class="close" data-dismiss="alert" href="#">&times;</a>
+        {@getMessage key="{msg}" locale="{locale}" bundle="alert"/}
+    </div>
+{/eq}
+
+{@eq key=type value="warning"}
+	<div data-alert class="alert-box warning round">
+	    <a href="#" class="close">&times;</a>
+		{@getMessage key="{msg}" locale="{locale}" bundle="alert"/}
+	</div>
+{/eq}
+
+{@eq key=type value="error"}
+	<div data-alert class="alert-box alert round">
+		<a href="#" class="close">&times;</a>
+		{@getMessage key="{msg}" locale="{locale}" bundle="alert"/}
+	</div>
+{/eq}
+
+{/alerts}

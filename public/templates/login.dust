@@ -1,0 +1,225 @@
+{>"layouts/login" /}
+{<title}{@pre type="content" key="login.title"/}{/title}
+{<heading}{@pre type="content" key="login.heading"/}{/heading}
+{<body}
+<div class="row padded-row" data-equalizer>
+   <div class="small-12 medium-8 columns"  data-equalizer-watch>
+      <div class="homeimage">
+         <h3>{@pre type="content" key="login.label.heading1"/}<br/>
+            {@pre type="content" key="login.label.heading2"/}
+         </h3>
+         <div class="button-1-right"><a href="#">{@pre type="content" key="login.label.findOut"/}</a></div>
+      </div>
+   </div>
+   <div class="small-12 medium-4 columns" data-equalizer-watch>
+      <div class="panel login-panel">
+         <h3>{@pre type="content" key="login.account.signin"/}</h3>
+         <form data-abide action='/login' method='post' id="login">
+            <!-- Hidden -->
+            <input type="hidden" name="_csrf" value="{_csrf}" />
+            <input type="hidden" id="providerCss" name="providerCss" value="{tenantInfo.tenantCssFilename}" />
+            <input type="hidden" id="loginId" name="loginId" value="{reqBody.loginId}" />
+            <input type="hidden" id="loyaltyId" name="loyaltyId" value="{reqBody.loyaltyId}" />
+            <input type="hidden" id="firstName" name="firstName" value="{reqBody.firstName}" />
+            <input type="hidden" id="lastName" name="lastName" value="{reqBody.lastName}" />
+            <input type="hidden" id="userRef" name="userRef" value="{reqBody.userRef}" />
+            <!-- End of Hidden -->
+
+			<div class="email-field">
+				<input id="email" type="email" name="email" placeholder="{@pre type="content" key="login.label.emailAddress.example"/}"
+				value="{reqBody.email}" data-abide-validator="loginIdValidator" required />
+				<small id="loginId_err_msg" class="error">{@pre type="content" key="login.loginId.req.error"/}</small>
+            </div>
+
+			<div class="password-field">
+				<input id="password" name="password" type="password" value="{reqBody.password}"
+				placeholder="{@pre type="content" key="login.label.yourPassword"/}"
+				onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false"
+				required maxlength='20' required />
+				<small class="error">{@pre type="content" key="login.userPwd.req.error"/}</small>
+            </div>
+
+            <p class="forgot-password"><label><a href="#" data-reveal-id="myModalPwd" class="popupLink">{@pre type="content" key="login.forgot.pass"/}</a></label></p>
+
+            <div class="button-2"><button class="button">{@pre type="content" key="login.btn.login"/}</button></div>
+         </form>
+      </div>
+      <div class="panel activate-register-panel ">
+         <div class="register-block">
+            <a href="#" id="registerPopUp" data-reveal-id="myModal" class="popupLink">
+            {@pre type="content" key="login.register"/}
+            </a>
+         </div>
+      </div>
+   </div>
+</div>
+
+   <div class="row">
+      <div class="medium-12 columns">
+         <h4 class="intro-copy">{@pre type="content" key="login.label.getStarted"/}</h4>
+      </div>
+   </div>
+   <div class="row"  data-equalizer>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <h5 class="first">{@pre type="content" key="login.box1.label"/}</h5>
+            <p>{@pre type="content" key="login.box1.msg1"/}<br />
+               {@pre type="content" key="login.box1.msg2"/}
+            </p>
+            <p class="promo-panel-info">{@pre type="content" key="login.box1.msg3"/}</p>
+         </div>
+      </div>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <h5 class="second">{@pre type="content" key="login.box2.label"/}</h5>
+            <p>{@pre type="content" key="login.box2.msg1"/}<br />
+               {@pre type="content" key="login.box2.msg2"/}
+            </p>
+            <p class="promo-panel-info">{@pre type="content" key="login.box2.msg3"/}</p>
+         </div>
+      </div>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <h5 class="third">{@pre type="content" key="login.box3.label"/}</h5>
+            <p>{@pre type="content" key="login.box3.msg1"/}
+            </p>
+            <p class="promo-panel-info">{@pre type="content" key="login.box3.msg2"/}</p>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="medium-12 columns">
+         <div class="popular-rewards">
+            {@pre type="content" key="login.label.rewards"/}
+         </div>
+      </div>
+   </div>
+   <div class="row"  data-equalizer>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <div class="category-title">{@pre type="content" key="login.label.category1"/}</div>
+            <div class="category-img1" style="cursor: default" >&nbsp;</div>
+         </div>
+      </div>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <div class="category-title">{@pre type="content" key="login.label.category2"/}</div>
+            <div class="category-img2" style="cursor: default">&nbsp;</div>
+         </div>
+      </div>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <div class="category-title">{@pre type="content" key="login.label.category3"/}</div>
+            <div class="category-img3" style="cursor: default">&nbsp;</div>
+         </div>
+      </div>
+   </div>
+   <div class="row"  data-equalizer>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <div class="category-title">{@pre type="content" key="login.label.category4"/}</div>
+            <div class="category-img4" style="cursor: default">&nbsp;</div>
+         </div>
+      </div>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <div class="category-title">{@pre type="content" key="login.label.category5"/}</div>
+            <div class="category-img5" style="cursor: default">&nbsp;</div>
+         </div>
+      </div>
+      <div class="small-12 medium-4 columns">
+         <div class="panel promo-panel" data-equalizer-watch>
+            <div class="category-title">{@pre type="content" key="login.label.category6"/}</div>
+            <div class="category-img6" style="cursor: default">&nbsp;</div>
+         </div>
+      </div>
+   </div>
+</div>
+<div id="myModal" class="small reveal-modal" data-reveal>
+   <div class="panel content active">
+      <form data-abide action='/verifyLoyaltyAcct' method='post'>
+         <input type="hidden" name="_csrf" value="{_csrf}" />
+         <h3><b>{@pre type="content" key="login.signup.label"/}</b></h3>
+         <a class="close-reveal-modal">&#215;</a>
+         <div class="name-field small-centered columns">
+            <label>{@pre type="content" key="login.loyaltyId"/}</label>
+            <input type="text" name="loyaltyId" placeholder="{@pre type="content" key="login.enter.loyaltyId"/}"
+            data-abide-validator="loyaltyIdValidator" maxlength='12' >
+            <small id="loyaltyId_err_msg" class="error">{@pre type="content" key="login.signup.loyaltyId.required"/}</small>
+         </div>
+         <div class="small-8 small-centered columns">
+            <div class="button-2"><button class="button">{@pre type="content" key="login.btn.continue"/}</button></div>
+         </div>
+      </form>
+   </div>
+</div>
+<div id="myModalPwd" class="small reveal-modal" data-reveal>
+   <div class="panel content active">
+      <form data-abide action='/forgotpassword' method='post'>
+         <input type="hidden" name="_csrf" value="{_csrf}" />
+         <h3><b>{@pre type="content" key="login.forgotPwd.label"/}</b></h3>
+         <a class="close-reveal-modal">&#215;</a>
+         <div class="name-field small-centered columns">
+            <span>{@pre type="content" key="login.forgotPwd.note"/}</span>
+            <input id='loginId' type="email" name="loginId" value="{reqBody.loginId}"
+            placeholder="{@pre type="content" key="login.forgotPwd.email" /}" required maxlength='255'>
+            <small id="loginId_err_msg" class="error">{@pre type="content" key="login.forgotPwd.loginID.error" /}</small>
+         </div>
+         <div class="small-8 small-centered columns">
+            <div class="button-2"><button class="button">{@pre type="content" key="login.btn.continue"/}</button></div>
+         </div>
+      </form>
+   </div>
+</div>
+{/body}
+{<body-scripts}
+
+<script type="text/javascript">
+   $(document).ready(function () {
+      $('#email').focus();
+	  $('#password').val('');
+   });
+
+   $(document).foundation({
+       abide: {
+           validators: {
+               loginIdValidator: function(el, required, parent) {
+                   var emptyStringRegEx = /^$/;
+                   var validEmailExp = this.settings.patterns.email;
+                   console.log('emptyStringRegEx  :::'+emptyStringRegEx.test(el.value.trim()));
+                   if (emptyStringRegEx.test(el.value.trim())) {
+                       $("#loginId_err_msg").text('{@pre type="content" key="login.loginId.req.error" /}');
+                       return false;
+                   } else {
+                       if (validEmailExp.test(el.value)) {
+                           return true;
+                       } else {
+                           $("#loginId_err_msg").text('{@pre type="content" key="login.loginId.valid.error" /}');
+                               return false;
+                       }
+                   }
+               },
+   			loyaltyIdValidator: function(el, required, parent) {
+   				var loyaltyIdExpr = /^([0-9]+)$/;
+   				if (loyaltyIdExpr.test(el.value)) {
+   					return true;
+   				} else {
+   					$("#loyaltyId_err_msg").text("{@pre type="content" key="login.signup.loyaltyId.required" /}");
+   					return false;
+   				}
+   			}
+           }
+       }
+   });
+   $(document).foundation();
+
+   $("#registerLink").on("click", function() {
+	  $('#registerPopUp').click();
+   });
+
+   $("#signinLink").on("click", function(e) {
+      $('#email').focus();
+   });
+
+</script>
+{/body-scripts}

@@ -1,0 +1,14 @@
+#node-related folders and files
+node_modules
+npm-debug.log
+
+#intelliJ IDE
+*.iml
+.idea
+
+# 3rd-party / dependency files
+vendor/
+*/vendor/
+
+# vim
+*.swp

@@ -1,0 +1,28 @@
+<div id="footer">
+   {@if cond="'{showLoggedInFooter}'==='true'"}
+        <div class="row" style="border-bottom:1px solid #DDD;">
+            <div class="large-12 columns">
+                <nav class="links">
+                    <a href='/home'>{@pre type="content" key="layout.footer.menu.home"/}</a>
+                    <a href='/profile'>{@pre type="content" key="layout.footer.menu.profile"/}</a>
+                    <a href='/transactions'>{@pre type="content" key="layout.footer.menu.transactions"/}</a>
+                    <a href='/rewards'>{@pre type="content" key="layout.footer.menu.rewards"/}</a>
+                    <a href="#">{@pre type="content" key="layout.footer.contactUs"/}</a>
+                </nav>
+            </div>
+        </div>
+   {/if}
+   <div class="row">
+      <div class="large-8 columns" style="text-align:left;">
+         <nav class="links">
+            <a href="#">{@pre type="content" key="layout.footer.menu.disclaimer"/}</a><span>&nbsp;</span>
+            <a href="#">{@pre type="content" key="layout.footer.menu.privacy"/}</a><span>&nbsp;</span>
+            <a href="#">{@pre type="content" key="layout.footer.menu.cookies"/}</a><span>&nbsp;</span>
+         </nav>
+      </div>
+      <div class="large-4 columns" align="right">
+         <span>&copy; Copyright 2015</span>
+      </div>
+   </div>
+</div>
+

@@ -1,0 +1,150 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content='{@pre type="content" key="layout.master.mlp.title"/}' name='description' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <title>{+title /}</title>
+    <link href='{@pre type="content" key="layout.master.mlp.icon"/}' rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <script src="js/vendor/modernizr.js"></script>
+    <!-- foundation end -->
+    <!-- foundation datepicker start -->
+    <link rel="stylesheet" href="css/foundation-datepicker.css">
+    <!-- foundation datepicker end -->
+  </head>
+  <body>
+   <input type="hidden" id="providerCss" name="providerCss" value="{tenantInfo.tenantCssFilename}" />
+
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+      <section class="main-section cobrand">
+          <div id="bgcolor-cobrand">
+              <div class="row">
+                  <div class="large-12 columns">
+                      <p class="coBrandLogo">
+                          <img src='img/reward-3d.png' alt="Welcome" />
+                      </p>
+                  </div>
+              </div>
+          </div>
+
+          <br>
+
+          {@if cond="'{showNavigationBar}'==='true'"}
+              <div class="row " data-equalizer>
+                  <div class="medium-12 columns">
+                      <div class="page-nav-title">
+                          <a href="/home">
+                              <img src="img/home-icon-grey.png" onmouseover="this.src='img/home-icon.png'" onmouseout="this.src='img/home-icon-grey.png'" border="0px">
+                          </a>&nbsp;<img src="img/arrow-right-GREY.png">&nbsp;
+
+                          {+ heading /}
+                      </div>
+                  </div>
+              </div>
+          {/if}
+
+          <div class="row">
+              <div class="large-12 columns">
+                  {>"layouts/shared/alerts" /}
+              </div>
+          </div>
+
+          {+body /}
+
+      </section>
+
+
+      <footer>
+        {>"layouts/footer" showLoggedInFooter="true" /}
+      </footer>
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+     </div>
+   </div>
+
+   <script src="js/vendor/jquery.js" type="text/javascript"></script>
+   <script src="js/vendor/fastclick.js" type="text/javascript"></script>
+   <script src="js/foundation.min.js" type="text/javascript"></script>
+   <script src="js/jquery.checkable.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.offcanvas.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.reveal.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.abide.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.accordion.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.dropdown.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation-datepicker.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.tooltip.js" type="text/javascript"></script>
+   <script src="js/foundation/foundation.equalizer.js" type="text/javascript"></script>
+   <script src="js/vendor/jquery.passstrength.js" type="text/javascript"></script>
+   <script type="text/javascript">
+     $(document).ready(function () {
+         var css = $("#providerCss").val();
+         if (document.createStyleSheet){
+            document.createStyleSheet(css);
+         } else {
+            $('head').append('<link rel="stylesheet" href="' +  css + '" type="text/css" />');
+         }
+
+		var langArr = new Object();
+		var lang = "{@pre type="content" key="layout.master.lang" after="$" /}";
+		var langSplit = lang.split('$');
+		for(var i=0; i<langSplit.length; i++) {
+		   if (langSplit[i].indexOf("~") > 0) {
+			  var langPair = langSplit[i];
+			  var langKeyVal = langPair.split('~');
+			  langArr[langKeyVal[0]] = langKeyVal[1];
+		   }
+		}
+
+		var strVale = "{tenantInfo.tenantSupportedLang}";
+		var intValArray=strVale.split(',');
+		var s = $('.dropdown');
+		var tmpLangArr = new Object();
+		for(var i=0; i<intValArray.length; i++) {
+			var locale = intValArray[i];
+			var text = langArr[locale];
+			tmpLangArr[locale] = text;
+		}
+		var langList = [];
+		for (var key in tmpLangArr) langList.push([key, tmpLangArr[key]]);
+		langList.sort(function(a, b) {
+			a = a[1];
+			b = b[1];
+			return a < b ? -1 : (a > b ? 1 : 0);
+		});
+		for (var i = 0; i < langList.length; i++) {
+			var locale = langList[i][0];
+			var text = langList[i][1];
+			$('<li><a href="#" id="' + locale + '">' + text + '</a></li>').appendTo(s);
+		}
+		s.appendTo('.dropdown');
+
+		$(".dropdown > li a").on("click", function() {
+			var locale = $(this).attr('id');
+			var url = window.location.href;
+			var req = {
+				locale: locale
+			};
+			$.ajax({
+				type: "GET",
+				url: "/ajax/setLanguage",
+				dataType: "json",
+				data: req
+			}).done(function(msg) {
+				location.reload();
+			});
+		});
+
+     });
+   </script>
+
+   {+body-scripts /}
+
+  </body>
+
+</html>
