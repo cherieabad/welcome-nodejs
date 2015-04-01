@@ -7,6 +7,8 @@ var logger = require('../lib/logUtil');
 var nconf = require('nconf');
 //var globalize = require('../lib/globalize');
 
+var cloudcms = require('../lib/cloudcms');
+
 module.exports = function(server) {
     server.get('/', function(req, res) {
         logger.info('*** Index.js GET function with tenant ID parameter');
@@ -14,12 +16,13 @@ module.exports = function(server) {
         //var tenantId = req.query.tenantId;
         var tenantCd = req.query.tenantCd;
         logger.info('*** Index.js tenantCd - ' + tenantCd);
-        var styleConf, tenantConf;
+        var styleConf, tenantConf, cloudcmsConf;
 
         // Get the default configuration based on the tenant id
         nconf.file({file: 'config/settingsTenant' + tenantCd + '.json'});
         styleConf = nconf.get('styleConfig');
         tenantConf = nconf.get('tenantConfig');
+        cloudcmsConf = nconf.get('cloudcmsConfig');
 
         if (styleConf === '') {
             nconf.file({file: 'config/defaultSettings.json'});
@@ -70,8 +73,37 @@ module.exports = function(server) {
 
         //Setting the locale to def lang
         res.locals.context = {locality: tenantInfo.tenantLang};
-	
-        res.render('login', model);
+
+        /**
+         * Connect to Cloud CMS using the selected tenant configuration.  The connections are created and cached
+         * on server startup.  This simply reuses the cached connection.
+         *
+         * The branch is then used to query for nodes and attach them to the model ahead of render.
+         */
+        cloudcms.connect(cloudcmsConf, function(err, cms, branch) {
+
+            if (err) {
+                console.log("Unable to connect to Cloud CMS, err: " + JSON.stringify(err));
+                return;
+            }
+
+            branch.queryNodes().then(function() {
+
+                // as a map
+                model.nodes = this;
+
+                // or as a list
+                model.nodeList = this.asArray();
+
+            }).then(function() {
+
+                // TODO: do something with the nodes themselves
+                console.log("Model Nodes: " + JSON.stringify(model.nodes));
+
+                res.render('login', model);
+            });
+        });
+
     });
 
 };

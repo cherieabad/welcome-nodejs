@@ -2,7 +2,8 @@
 
 var alert = require('./lib/alert');
 var templateModel = require('./lib/templateModel');
-var gitana = require("gitana");
+
+var cloudcms = require('./lib/cloudcms');
 
 var kraken = require('kraken-js'),
         fs = require('fs'),
@@ -84,58 +85,22 @@ if (require.main === module) {
         if (err) {
             console.error(err.stack);
         } else {
-            gitana.connect(function(err) {
-                // if we were unable to connect, send back an error
-                if (err) {
-                    res.send(500, "Could not connect to Cloud CMS, please check your gitana.json configuration file: " + JSON.stringify(err));
+
+            // start up cloud cms connections to all tenants
+            cloudcms.init(function(errs) {
+
+                if (errs && errs.length > 0)
+                {
+                    for (var i = 0; i < errs.length; i++)
+                    {
+                        res.send(500, "Could not connect to Cloud CMS, please check your gitana.json configuration file: " + JSON.stringify(errs[i]));
+                    }
+
                     return;
-                } else {
-                    /* PREMISE: For local storage purposes
-                     * 1. This portion of code should traverse the projects of all configured tenants
-                     * 2. Each tenant will have its own project and a designated user
-                     * 3. Each page will have the following:
-                     *    - definition (a definition is mainly based on specific UI, i.e. landing page, home page)
-                     *    - form based on the created definition
-                     *    - content instance for each form
-                     */
-                    logger.info(">>>>>>>>> GITANA CONNECTION SUCCESSFUL!!!");
-
-                    var platform = this;
-                    
-                    platform.listRepositories().each(function() {
-                        var repository = this;
-                        console.log("Repository: " + JSON.stringify(repository));
-                        console.log("Repository title: " + this.get("title"));
-
-                        repository.listBranches().each(function() {
-                            var branch = this;
-                            console.log("Branch: " + JSON.stringify(branch));
-                            console.log("Branch title: " + this.get("title"));
-
-                            // TEST 1: Read a node by searching a node using a keyword - Working
-                            branch.searchNodes("CMS").then(function() {
-                                console.log("Found a node via keyword search: " + JSON.stringify(this));
-                            });
-
-                            // TEST 2: Read a node by node id - not working
-                            var nodeId = "d0296a766d643a70dbef";
-
-                            // here we read by node ID
-                            branch.readNode(nodeId).then(function() {
-                                console.log("Found node using node ID: " + JSON.stringify(this));
-                            });
-							
-                            // TEST 3: Read a node by qname - not working
-                            var qname = "testdefinition:data01";
-
-
-                            // here we read by QName
-                            branch.readNode(qname).then(function() {
-                                console.log("Found node using qname: " + JSON.stringify(this));
-                            });
-                        });
-                    });
                 }
+
+                console.log("Connected to all Cloud CMS tenants");
+
             });
         }
     });

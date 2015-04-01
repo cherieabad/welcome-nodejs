@@ -11,6 +11,14 @@
         "CURRENCY": "EUR",
         "RESIDENCE_COUNTRY_DEFAULT": "FR",
         "COUNTRY_LIST": "SA,AU,AE,ES,FR,LB,PH,GB,SG,VN"
+    },
+    "cloudcmsConfig": {
+        "clientKey": "3337ee14-1f8e-4d4b-8d02-a68c1d783751",
+        "clientSecret": "flLv4kC1qku0Pqm4iV4KKXuzyhECyTdtB3reLgJqgw8HmTME1UuOVmBtGd1/gNQpui16ylH2vWKLONj4eaFKh5T83I6REyBUMOx98DHoQfg=",
+        "username": "053e9c29-aac9-4a88-9dd3-02cc7110bd8c",
+        "password": "m9qff0fu6KY5OanquPeaCDqu7SWNvtjqBJtHhFxW2qwIUYJPPIEY1hAmmwSIdKxvCp7BAdhNCalm2ih94ebZydGgXiig1S1o7VDoHSWS6/g=",
+        "baseURL": "https://api.cloudcms.com",
+        "application": "c4f30b0d6cf29874096e"
     }
 }
  

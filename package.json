@@ -1,17 +1,18 @@
 {
-    "name": "welcome-cms-test",
-    "description": "Welcome sample node.js project to retrieve content on Cloud CMS",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-       "dustjs-helpers": "1.1.2",
-       "dustjs-linkedin": "2.0.3",
-       "express": "3.16.10",
-       "kraken-js": "0.7.5",
-	   "less": "1.6.3",
-       "log4js": "0.6.21",
-       "makara": "0.3.5",
-       "nconf": "~0.6.8",
-       "gitana": "~1.0.120"
-    }
+  "name": "welcome-cms-test",
+  "description": "Welcome sample node.js project to retrieve content on Cloud CMS",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "^0.9.0",
+    "dustjs-helpers": "1.1.2",
+    "dustjs-linkedin": "2.0.3",
+    "express": "3.16.10",
+    "gitana": "~1.0.120",
+    "kraken-js": "0.7.5",
+    "less": "1.6.3",
+    "log4js": "0.6.21",
+    "makara": "0.3.5",
+    "nconf": "~0.6.8"
+  }
 }
