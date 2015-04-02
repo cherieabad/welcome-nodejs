@@ -10,6 +10,31 @@
          </h3>
          <div class="button-1-right"><a href="#">{@pre type="content" key="login.label.findOut"/}</a></div>
       </div>
+
+      <!-- Added to show News Item -->
+      <br/>
+      {#newsItems}
+      <div class="panel">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">
+                  {title}
+               </h3>
+            </div>
+            <div class="panel-body">
+               {body}
+
+               <br/>
+
+               <div style="text-align:center">
+                  <img style="width: 256px" src="/static/{image[0].id}?tenantCd={tenantInfo.tenantId}">
+               </div>
+
+           </div>
+         </div>
+      </div>
+      {/newsItems}
+
    </div>
    <div class="small-12 medium-4 columns" data-equalizer-watch>
       <div class="panel login-panel">

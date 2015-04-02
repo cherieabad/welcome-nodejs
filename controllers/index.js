@@ -7,8 +7,6 @@ var logger = require('../lib/logUtil');
 var nconf = require('nconf');
 //var globalize = require('../lib/globalize');
 
-var cloudcms = require('../lib/cloudcms');
-
 module.exports = function(server) {
     server.get('/', function(req, res) {
         logger.info('*** Index.js GET function with tenant ID parameter');
@@ -75,33 +73,22 @@ module.exports = function(server) {
         res.locals.context = {locality: tenantInfo.tenantLang};
 
         /**
-         * Connect to Cloud CMS using the selected tenant configuration.  The connections are created and cached
-         * on server startup.  This simply reuses the cached connection.
+         * The Cloud CMS middleware provided in cloudcms.js sets up req.branch for us.  We can simply use this
+         * to retrieve anything we'd like for the current tenant.
          *
-         * The branch is then used to query for nodes and attach them to the model ahead of render.
+         * Let's find news items...
          */
-        cloudcms.connect(cloudcmsConf, function(err, cms, branch) {
+        req.branch.queryNodes({
+            "_type": "test:news_item"
+        }).then(function() {
 
-            if (err) {
-                console.log("Unable to connect to Cloud CMS, err: " + JSON.stringify(err));
-                return;
-            }
+            // nodes as a list
+            model.newsItems = this.asArray();
 
-            branch.queryNodes().then(function() {
+        }).then(function() {
 
-                // as a map
-                model.nodes = this;
-
-                // or as a list
-                model.nodeList = this.asArray();
-
-            }).then(function() {
-
-                // TODO: do something with the nodes themselves
-                console.log("Model Nodes: " + JSON.stringify(model.nodes));
-
-                res.render('login', model);
-            });
+            // now render the view
+            res.render('login', model);
         });
 
     });

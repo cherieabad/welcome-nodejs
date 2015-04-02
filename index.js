@@ -41,6 +41,7 @@ app.requestStart = function requestStart(server) {
 };
 
 app.requestBeforeRoute = function requestBeforeRoute(server) {
+
     // Run before any routes have been added.
     // Fired before routing occurs
     server.use(logger.initialize());
@@ -60,6 +61,9 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
         };
         next();
     });
+
+    // set up any Cloud CMS routes
+    cloudcms.routes(server);
 };
 
 app.requestAfterRoute = function requestAfterRoute(server) {

@@ -9,10 +9,12 @@
     "dustjs-linkedin": "2.0.3",
     "express": "3.16.10",
     "gitana": "~1.0.120",
+    "http-proxy": "^1.10.0",
     "kraken-js": "0.7.5",
     "less": "1.6.3",
     "log4js": "0.6.21",
     "makara": "0.3.5",
-    "nconf": "~0.6.8"
+    "nconf": "~0.6.8",
+    "ssl-root-cas": "^1.1.10"
   }
 }
