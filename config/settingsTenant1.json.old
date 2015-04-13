@@ -6,8 +6,8 @@
     "tenantConfig": {
         "TENANT_CODE": "1",
         "TENANT_INT_ID": "1",
-        "SUPPORTED_LANGUAGE_LIST": "en-US,es-ES,zh-CN",
-        "DEF_LANG": "en-US",
+        "SUPPORTED_LANGUAGE_LIST": "en-GB,fr-FR,es-ES",
+        "DEF_LANG": "en-GB",
         "CURRENCY": "GBP",
         "RESIDENCE_COUNTRY_DEFAULT": "GB",
         "COUNTRY_LIST": "AU,FR,LB,PH,SA,SG,ES,AE,GB,VN"

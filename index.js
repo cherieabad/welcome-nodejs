@@ -88,24 +88,6 @@ if (require.main === module) {
     kraken.create(app).listen(function(err, server) {
         if (err) {
             console.error(err.stack);
-        } else {
-
-            // start up cloud cms connections to all tenants
-            cloudcms.init(function(errs) {
-
-                if (errs && errs.length > 0)
-                {
-                    for (var i = 0; i < errs.length; i++)
-                    {
-                        res.send(500, "Could not connect to Cloud CMS, please check your gitana.json configuration file: " + JSON.stringify(errs[i]));
-                    }
-
-                    return;
-                }
-
-                console.log("Connected to all Cloud CMS tenants");
-
-            });
         }
     });
 }

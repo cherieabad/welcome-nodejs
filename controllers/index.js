@@ -79,7 +79,8 @@ module.exports = function(server) {
          * Let's find news items...
          */
         req.branch.queryNodes({
-            "_type": "test:news_item"
+            //"_type": "test:news_item",
+            "_doc": "15266453e731fd70e188"
         }).then(function() {
 
             // nodes as a list

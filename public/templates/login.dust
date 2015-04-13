@@ -2,6 +2,19 @@
 {<title}{@pre type="content" key="login.title"/}{/title}
 {<heading}{@pre type="content" key="login.heading"/}{/heading}
 {<body}
+
+<!-- Language Switcher (just for demo) -->
+<div class="row">
+   <div class="col-md-12">
+      <div class="btn-group" style="text-align:center">
+         <a class="btn btn-default" href="/locale/en-us?tenantCd={tenantInfo.tenantId}">English</a>&nbsp;|&nbsp;
+         <a class="btn btn-default" href="/locale/es-es?tenantCd={tenantInfo.tenantId}">Spanish</a>&nbsp;|&nbsp;
+         <a class="btn btn-default" href="/locale/zh-cn?tenantCd={tenantInfo.tenantId}">Chinese</a>
+      </div>
+      <br/>
+   </div>
+</div>
+
 <div class="row padded-row" data-equalizer>
    <div class="small-12 medium-8 columns"  data-equalizer-watch>
       <div class="homeimage">
@@ -22,7 +35,7 @@
                </h3>
             </div>
             <div class="panel-body">
-               {body}
+               {body|s}
 
                <br/>
 
